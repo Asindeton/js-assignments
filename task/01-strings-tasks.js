@@ -230,9 +230,34 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
+   /*  let alp = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    alp.split('')
+    let arr1 = str.split('')
+    let answer = []
+    arr1.map(function(e){
+        let numb = 0;
+        if(alp.includes(e)){
+            if(alp.indexOf(e) < 12){
+                numb = alp.indexOf(e) + 13
+                answer.push(alp[numb])
+            } if (alp.indexOf(e) > 12 && alp.indexOf(e) < 25) {
+                numb = alp.indexOf(e) - 13
+                answer.push(alp[numb])
+            } if(alp.indexOf(e) > 38 && alp.indexOf(e) < 51) {
+                numb = alp.indexOf(e) + 13
+                answer.push(alp[numb])
+            } else{
+                numb = alp.indexOf(e) - 13
+                answer.push(alp[numb])
+            }
+        } else {
+            answer.push(e)
+        }
+    })
+    console.log(answer)
+    return answer */
     throw new Error('Not implemented');
 }
-
 /**
  * Returns true if the value is string; otherwise false.
  * @param {string} value
@@ -276,7 +301,12 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    throw new Error('Not implemented');
+    let arr = ['A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
+               'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
+               'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
+               'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠']
+    
+    return arr.includes(value) ? arr.indexOf(value) : false
 }
 
 
