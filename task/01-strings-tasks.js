@@ -38,7 +38,7 @@ function concatenateStrings(value1, value2) {
  *   ''      => 0
  */
 function getStringLength(value) {
-    return value.length
+    return `'${value}' length should be ${value.split('').length}`;
 }
 
 /**
@@ -210,8 +210,15 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    throw new Error('Not implemented');
-}
+    const topStr = '┌┐\n'.split('');
+    topStr.splice(1, 0, '─'.repeat(width - 2));
+    const botStr = '└┘\n'.split('');
+    botStr.splice(1, 0, '─'.repeat(width - 2));
+    const midString = '││\n'.split('');
+    midString.splice(1, 0, ' '.repeat(width - 2));
+    const result = topStr.join('') + midString.join('').repeat(height - 2) + botStr.join('');
+    return result;
+  }
 
 
 /**
@@ -230,34 +237,25 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-   /*  let alp = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    alp.split('')
-    let arr1 = str.split('')
-    let answer = []
-    arr1.map(function(e){
-        let numb = 0;
-        if(alp.includes(e)){
-            if(alp.indexOf(e) < 12){
-                numb = alp.indexOf(e) + 13
-                answer.push(alp[numb])
-            } if (alp.indexOf(e) > 12 && alp.indexOf(e) < 25) {
-                numb = alp.indexOf(e) - 13
-                answer.push(alp[numb])
-            } if(alp.indexOf(e) > 38 && alp.indexOf(e) < 51) {
-                numb = alp.indexOf(e) + 13
-                answer.push(alp[numb])
-            } else{
-                numb = alp.indexOf(e) - 13
-                answer.push(alp[numb])
-            }
-        } else {
-            answer.push(e)
-        }
-    })
-    console.log(answer)
-    return answer */
-    throw new Error('Not implemented');
-}
+    const alph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .!,?';
+    const alph2 = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm .!,?';
+    const alphArray = alph.split('');
+    const alph2Array = alph2.split('');
+    const strArr = str.split('');
+    // eslint-disable-next-line prefer-const
+    let newArray = [];
+    let answer = '';
+  
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < strArr.length; ++i) {
+      newArray[i] = alphArray.indexOf(strArr[i]);
+    }
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < strArr.length; ++i) {
+      answer += alph2Array[newArray[i]];
+    }
+    return answer;
+  }
 /**
  * Returns true if the value is string; otherwise false.
  * @param {string} value
@@ -272,8 +270,11 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    throw new Error('Not implemented');
-}
+    if (typeof value === 'string' || value instanceof String) {
+      return true;
+    }
+    return false;
+  }
 
 
 /**
